@@ -8,8 +8,8 @@
     </Style>
     
     <Style Selector="WrapPanel.gridProdutos">
-        <Setter Property="ItemWidth" Value="120" />
-        <Setter Property="ItemHeight" Value="120" />
+        <Setter Property="ItemWidth" Value="180" />
+        <Setter Property="ItemHeight" Value="220" />
         <Setter Property="HorizontalAlignment" Value="Center" />
     </Style>
     <Style Selector="StackPanel.cardProduto">
@@ -17,5 +17,6 @@
             mas Aparentemente e tudo em um so StackPanel porque eu coloquei margem e ao inves de separar
             Cada Card, separou os Cards da borda da Janela-->
         <Setter Property="Margin" Value="0"/>
+        
     </Style>
 </Styles>

@@ -17,27 +17,29 @@
     </Design.DataContext>
     
     <ScrollViewer>
-        <ItemsControl ItemsSource="{Binding Produtos}">
+        <StackPanel>
+            <ItemsControl ItemsSource="{Binding Produtos}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Classes="gridProdutos"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
             
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Classes="gridProdutos"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Classes="cardProduto">
-                        <TextBlock Text="{Binding Nome}"/>
-                        <Image Source="{Binding Img}" Classes="produtoImg"/>
-                        <TextBlock Text="{Binding Preco}"/>  
-                        <Button Content="Adicionar" 
-                                Command="{Binding DataContext.AdicionarAoCarrinhoCommand, ElementName=RootWindow}"
-                                CommandParameter="{Binding}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Classes="cardProduto">
+                            <TextBlock Text="{Binding Nome}"/>
+                            <Image Source="{Binding Img}" Classes="produtoImg"/>
+                            <TextBlock Text="{Binding Preco}"/>  
+                            <Button Content="Adicionar" 
+                                    Command="{Binding DataContext.AdicionarAoCarrinhoCommand, ElementName=RootWindow}"
+                                    CommandParameter="{Binding}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Button Content="Ver Carrinho" Click="AbrirCarrinho_Click" />
+        </StackPanel>
     </ScrollViewer>
 
 </Window>

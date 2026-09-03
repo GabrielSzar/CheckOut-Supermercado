@@ -1,0 +1,44 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Self_Service.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Self_Service.Views.CarrinhoWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="CarrinhoWindow"
+        x:Name="RootWindow">
+        <ScrollViewer>
+                <StackPanel>
+                        <ItemsControl ItemsSource="{Binding Carrinho}">
+                                <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                                <WrapPanel Classes="gridProdutos"/>
+                                        </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+            
+                                <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                                <StackPanel Classes="cardProduto">
+                                                        <TextBlock Text="{Binding Produto.Nome}"/>
+                                                        <Image Source="{Binding Produto.Img}" Classes="produtoImg"/>
+                                                        <TextBlock Text="{Binding Produto.Preco}"/>
+                                                        <TextBlock Text="{Binding Quantidade}"/>
+                                                        <Button Content="+"
+                                                                Command="{Binding  DataContext.AumentarQuantidadeCommand, ElementName=RootWindow}"
+                                                                CommandParameter="{Binding}"/>
+                                                        <Button Content="-"
+                                                                Command="{Binding DataContext.DiminuirQuantidadeCommand, ElementName=RootWindow}"
+                                                                CommandParameter="{Binding}"/>
+                                                </StackPanel>
+                                        </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <TextBlock Text="{Binding Total}"/>
+                        <Button Content="Pagar"
+                                Command="{Binding DataContext.PagarCommand, ElementName=RootWindow}"
+                                CommandParameter="{Binding}"/>
+                        <TextBlock Text="{Binding Notificacao}"/>
+                </StackPanel>
+        </ScrollViewer>
+</Window>

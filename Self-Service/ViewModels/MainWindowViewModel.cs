@@ -1,14 +1,18 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Self_Service.Views;
 
 namespace Self_Service.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
-{
+{   
     [ObservableProperty]
     public partial decimal Total { get; set; }
+
+    [ObservableProperty] public partial string? Notificacao { get; set; };
     public ObservableCollection<Produto> Produtos { get; } =
     [
         new Produto("Arroz", 12.98m, "avares://Self-Service/Assets/Img/arroz.png"),
@@ -18,7 +22,7 @@ public partial class MainWindowViewModel : ViewModelBase
         new Produto("Banana", 56.77m, "avares://Self-Service/Assets/Img/banana.png")
     ];
 
-    private ObservableCollection<ItemCarrinho> Carrinho { get; set; } = [];
+    public ObservableCollection<ItemCarrinho> Carrinho { get; set; } = [];
     
     [RelayCommand] private void AdicionarAoCarrinho(Produto produto)
     {
@@ -57,5 +61,12 @@ public partial class MainWindowViewModel : ViewModelBase
     private void RecalcularTotal()
     {
         Total =  Carrinho.Sum(x => x.Quantidade * x.Produto.Preco );
+    }
+
+    [RelayCommand] private void Pagar()
+    {
+        Carrinho.Clear();
+        RecalcularTotal();
+        Notificacao = "Pagamento Efetuado com sucesso!";
     }
 }

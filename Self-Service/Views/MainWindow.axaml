@@ -7,14 +7,37 @@
         x:Class="Self_Service.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Self_Service">
+        Title="Self_Service"
+        x:Name="RootWindow"><!--Isso e usando para "Bindar" Metodos do ViewModel-->
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-
-    <TextBlock Text="{Binding }" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    
+    <ScrollViewer>
+        <ItemsControl ItemsSource="{Binding Produtos}">
+            
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Classes="gridProdutos"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Classes="cardProduto">
+                        <TextBlock Text="{Binding Nome}"/>
+                        <Image Source="{Binding Img}" Classes="produtoImg"/>
+                        <TextBlock Text="{Binding Preco}"/>  
+                        <Button Content="Adicionar" 
+                                Command="{Binding DataContext.AdicionarAoCarrinhoCommand, ElementName=RootWindow}"
+                                CommandParameter="{Binding}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </ScrollViewer>
 
 </Window>

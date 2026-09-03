@@ -3,6 +3,8 @@
   <component name="AvaloniaProject">
     <option name="projectPerEditor">
       <map>
+        <entry key="Self-Service/App.axaml" value="Self-Service/Self-Service.csproj" />
+        <entry key="Self-Service/Styles/Styles.axaml" value="Self-Service/Self-Service.csproj" />
         <entry key="Self-Service/Views/MainWindow.axaml" value="Self-Service/Self-Service.csproj" />
       </map>
     </option>

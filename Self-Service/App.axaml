@@ -8,8 +8,9 @@
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
-  
+             
     <Application.Styles>
         <FluentTheme />
+        <StyleInclude Source="avares://Self-Service/Styles/CardStyles.axaml" />
     </Application.Styles>
 </Application>
